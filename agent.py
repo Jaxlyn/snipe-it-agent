@@ -1,20 +1,9 @@
-import os, requests, sys
+import os, requests, json
 
 from dotenv import load_dotenv, dotenv_values
+from functions.get_serial_number import getMachine_addr
 
 load_dotenv()
-
-def getMachine_addr():
-	os_type = sys.platform.lower()
-	if "win" in os_type:
-		command = "wmic bios get serialnumber"
-	elif "linux" in os_type:
-		command = "hal-get-property --udi /org/freedesktop/Hal/devices/computer --key system.hardware.uuid"
-	elif "darwin" in os_type:
-		command = "ioreg -l | grep IOPlatformSerialNumber"
-	return os.popen(command).read().replace("\n","").replace("	","").replace(" ","").replace("SerialNumber", "")
-
-#output machine serial code: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX
 
 serial = (getMachine_addr())
 
@@ -33,4 +22,16 @@ headers = {
 
 response = requests.get(url, headers=headers)
 
-print(response.text)
+data = json.loads(response.text)
+
+asset_serial = data['rows'][0]['serial']
+asset_name = data['rows'][0]['name']
+
+print(asset_name)
+
+if asset_name != "Ecyuida":
+	data['rows'][0]['name'] = "Ecyuida"
+
+print(data)
+
+modified_json = json.dumps(data)

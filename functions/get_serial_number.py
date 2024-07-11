@@ -10,7 +10,7 @@ def getMachine_addr():
 		command = "hal-get-property --udi /org/freedesktop/Hal/devices/computer --key system.hardware.uuid"
 	elif "darwin" in os_type:
 		command = "ioreg -l | grep IOPlatformSerialNumber"
-	return os.popen(command).read().replace("\n","").replace("	","").replace(" ","")
+	return os.popen(command).read().replace("\n","").replace("	","").replace(" ","").replace("SerialNumber", "")
 
 #output machine serial code: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX
 print(getMachine_addr())
