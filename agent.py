@@ -1,38 +1,54 @@
-import os, requests, json
+import requests, json
 
-from dotenv import load_dotenv, dotenv_values
-from Machine.hardware import get_machine_attributes, command, get_serial_number
+from Machine.getapicreds import snipeurl, apikey
+from Machine.hardware import get_machine_attributes_v2, get_serial_number, get_asset_id, get_time_and_date, get_date_snipe_field_status, get_date_snipe_field
+from Machine.location import find_location, get_location_snipe_field_status, get_ipaddress
 
-load_dotenv()
+with open('Config/commands.json') as json_file:
+    data = json.load(json_file)
 
-serial = get_serial_number()
+serial = get_serial_number(data)
 
-print(serial)
-
-print(os.getenv("SNIPE_URL"))
-
-url = os.getenv("SNIPE_URL") + "/hardware/byserial/" + serial + "?deleted=false"
-
-print(url)
+url = snipeurl + "/hardware/byserial/" + serial + "?deleted=false"
 
 headers = {
     "accept": "application/json",
-    "Authorization": "Bearer " + os.getenv("API_KEY")
+    "Authorization": "Bearer " + apikey
 }
 
 response = requests.get(url, headers=headers)
 
-data = json.loads(response.text)
+Asset_data = json.loads(response.text)
 
-get_machine_attributes()
+url2 = snipeurl + "/hardware/" + str(get_asset_id(Asset_data))
 
-for item in data['rows']:
-	for key, value in command:
-		if value != item:
-			data['rows'][0][key] = value
-		else:
-			continue
+print(url2)
 
-print(data)
+machine = get_machine_attributes_v2(data)
 
-modified_json = json.dumps(data)
+yes_or_no = get_date_snipe_field_status()
+if yes_or_no == True:
+    the_field = get_date_snipe_field()
+    machine[the_field] = get_time_and_date()
+
+no_or_yes = get_location_snipe_field_status()
+if no_or_yes == True:
+    strawberry = get_ipaddress(machine)
+    machine["location_id"] = find_location(strawberry)
+
+print(machine)
+
+headers = {
+    "accept": "application/json",
+    "Authorization": "Bearer " + apikey,
+    "content-type": "application/json"
+}
+
+response = requests.put(url2, json=machine, headers=headers)
+
+print(response.text)
+
+#print(data)
+#print(Asset_data)
+
+#modified_json = json.dumps(data)
