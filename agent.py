@@ -1,11 +1,11 @@
 import os, requests, json
 
 from dotenv import load_dotenv, dotenv_values
-from functions.get_serial_number import getMachine_addr
+from Machine.hardware import get_machine_attributes, command, get_serial_number
 
 load_dotenv()
 
-serial = (getMachine_addr())
+serial = get_serial_number()
 
 print(serial)
 
@@ -24,13 +24,14 @@ response = requests.get(url, headers=headers)
 
 data = json.loads(response.text)
 
-asset_serial = data['rows'][0]['serial']
-asset_name = data['rows'][0]['name']
+get_machine_attributes()
 
-print(asset_name)
-
-if asset_name != "Ecyuida":
-	data['rows'][0]['name'] = "Ecyuida"
+for item in data['rows']:
+	for key, value in command:
+		if value != item:
+			data['rows'][0][key] = value
+		else:
+			continue
 
 print(data)
 
