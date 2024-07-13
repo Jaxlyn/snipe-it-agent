@@ -1,10 +1,14 @@
 {
     "variables" : {
-        "date_time_enabled" : true,
-        "date_field" : "date",
+        "date_time_enabled" : false,
+        "date_field" : "",
         "ipaddress_location_enable" : true,
         "ipaddress_field" : "_snipeit_ip_address_4",
-        "unkown_location_value" : "Unknown Location"
+        "location_field" : "location_id",
+        "unkown_location_value" : "Unknown Location",
+        "powershell_enable" : false,
+        "use_serial_as_asset_tag" : false,
+        "default_status_id" : 1
     },
     "format" : {
        "_snipeit_amount_of_ram_19" : "str(round(int(output)/1073741824)) + \" GB\"",

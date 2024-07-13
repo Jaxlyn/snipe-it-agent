@@ -1,54 +1,36 @@
-import requests, json
+import requests, json, sys, time
 
-from Machine.getapicreds import snipeurl, apikey
-from Machine.hardware import get_machine_attributes_v2, get_serial_number, get_asset_id, get_time_and_date, get_date_snipe_field_status, get_date_snipe_field
-from Machine.location import find_location, get_location_snipe_field_status, get_ipaddress
+from getapicreds import snipeurl, apikey
+from Machine.initialize import commands_json
+from Machine.hardware import get_serial_number, url_ok, get_machine_attributes_v2
+from Machine.newasset import create_new_asset
+from Machine.updateasset import update_asset
 
-with open('Config/commands.json') as json_file:
-    data = json.load(json_file)
+print("\n Asset update in progress... \n")
+print(get_machine_attributes_v2(commands_json))
+print(snipeurl)
 
-serial = get_serial_number(data)
+connection_established = url_ok(snipeurl + "/hardware")
 
-url = snipeurl + "/hardware/byserial/" + serial + "?deleted=false"
+if connection_established == False:
+    print("No dice... Ending Update")
+    time.sleep(5)
+    sys.exit()
+
+serial = get_serial_number()
+
+get_serial_number_asset_arrtibutes_url = snipeurl + "/hardware/byserial/" + serial + "?deleted=false"
 
 headers = {
     "accept": "application/json",
     "Authorization": "Bearer " + apikey
 }
 
-response = requests.get(url, headers=headers)
+response = requests.get(get_serial_number_asset_arrtibutes_url, headers=headers)
 
 Asset_data = json.loads(response.text)
 
-url2 = snipeurl + "/hardware/" + str(get_asset_id(Asset_data))
-
-print(url2)
-
-machine = get_machine_attributes_v2(data)
-
-yes_or_no = get_date_snipe_field_status()
-if yes_or_no == True:
-    the_field = get_date_snipe_field()
-    machine[the_field] = get_time_and_date()
-
-no_or_yes = get_location_snipe_field_status()
-if no_or_yes == True:
-    strawberry = get_ipaddress(machine)
-    machine["location_id"] = find_location(strawberry)
-
-print(machine)
-
-headers = {
-    "accept": "application/json",
-    "Authorization": "Bearer " + apikey,
-    "content-type": "application/json"
-}
-
-response = requests.put(url2, json=machine, headers=headers)
-
-print(response.text)
-
-#print(data)
-#print(Asset_data)
-
-#modified_json = json.dumps(data)
+if Asset_data["messages"] == "Asset does not exist":
+    create_new_asset()
+else:
+    update_asset(Asset_data)
