@@ -1,3 +1,6 @@
 .env
 test.py
 values.json
+dist
+build
+agent.spec
