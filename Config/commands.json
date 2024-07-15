@@ -6,5 +6,7 @@
     "netID" : "wmic nic where netenabled=true get netconnectionID | find /v \"NetConnectionID\"", 
     "_snipeit_ip_address_4" : "wmic NICCONFIG WHERE IPEnabled=true GET IPAddress | find /v \"IPAddress\"",
     "_snipeit_mac_address_1" : "wmic NICCONFIG WHERE IPEnabled=true GET Macaddress | find /v \"MACAddress\"",
-    "model_name" : "wmic csproduct get name | find /v \"Name\""
+    "model_name" : "wmic csproduct get name | find /v \"Name\"",
+    "_snipeit_operating_system_23" : "wmic os get caption | find /v \"Caption\"",
+    "_snipeit_os_version_24" : "wmic os get version | find /v \"Version\""
 }

@@ -1,4 +1,4 @@
-import requests
+import requests, sys, time
 
 from Machine.initialize import commands_json, variables_json
 from getapicreds import snipeurl, apikey
@@ -31,3 +31,6 @@ def update_asset(Asset_data):
     response = requests.patch(update_asset_id_url, json=payload, headers=headers)
 
     print(response.text)
+
+    print("\nUpdate Completed")
+    time.sleep(5)

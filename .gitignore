@@ -4,3 +4,4 @@ values.json
 dist
 build
 agent.spec
+assetmgr_agent.spec
