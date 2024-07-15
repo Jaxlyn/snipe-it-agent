@@ -1,6 +1,11 @@
 import os, datetime, requests
 from Machine.initialize import variables_json, commands_json
 
+def slice_ip_address(address):
+    carrot = address[2:18]
+    output = carrot[:carrot.find('"')]
+    return output
+
 def url_ok(url):
     try:
         response = requests.get(url)
