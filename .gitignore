@@ -5,3 +5,6 @@ dist
 build
 agent.spec
 assetmgr_agent.spec
+apicreds.json
+assetmgr_agent_silent.py
+assetmgr_agent_silent.spec

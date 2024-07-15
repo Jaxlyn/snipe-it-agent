@@ -39,3 +39,5 @@ else:
     time.sleep(5)
     sys.exit()
     create_new_asset()
+
+time.sleep(5)

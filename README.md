@@ -21,10 +21,10 @@ locationatlas.json - optional
 
 Production build command
 
-pyinstaller --noconsole --add-data "Config\commands.json:Config" --add-data "Config\locationatlas.json:Config" --add-data "Config\othervariables.json:Config" --add-data ".env:." assetmgr_agent.py
+pyinstaller --noconsole --add-data "Config\commands.json:Config" --add-data "Config\locationatlas.json:Config" --add-data "Config\othervariables.json:Config" --add-data "Config/apicreds.json:Config" assetmgr_agent.py
 
 Debug build command
 
-pyinstaller --add-data "Config\commands.json:Config" --add-data "Config\locationatlas.json:Config" --add-data "Config\othervariables.json:Config" --add-data ".env:." assetmgr_agent.py
+pyinstaller --add-data "Config\commands.json:Config" --add-data "Config\locationatlas.json:Config" --add-data "Config\othervariables.json:Config" --add-data "Config/apicreds.json:Config" assetmgr_agent.py
 
 After building move config folder from _internal to root folder

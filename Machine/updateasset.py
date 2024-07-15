@@ -1,4 +1,4 @@
-import requests, sys, time
+import requests, time
 
 from Machine.initialize import commands_json, variables_json
 from getapicreds import snipeurl, apikey
@@ -33,4 +33,3 @@ def update_asset(Asset_data):
     print(response.text)
 
     print("\nUpdate Completed")
-    time.sleep(5)
