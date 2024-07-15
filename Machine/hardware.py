@@ -1,9 +1,9 @@
 import os, datetime, requests
-from Machine.initialize import variables_json
+from Machine.initialize import variables_json, commands_json
 
 def url_ok(url):
     try:
-        response = requests.head(url)
+        response = requests.get(url)
     except Exception as e:
         print(f"NOT OK: {str(e)}")
         true_or_false = False
@@ -44,7 +44,9 @@ def get_machine_attributes_v2(data):
             if tablekey != key:
                 continue
             else:
+                print(code)
                 output = eval(code)
                 break
         data[key] = output
-    return data
+        values = data
+    return values
