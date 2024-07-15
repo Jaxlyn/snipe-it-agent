@@ -3,13 +3,13 @@
         "date_time_enabled" : false,
         "date_field" : "",
         
-        "ipaddress_location_enable" : true,
+        "ipaddress_location_enable" : false,
         "ipaddress_field" : "_snipeit_ip_address_4",
         "location_field" : "location_id",
         "unkown_location_value" : "Unknown Location",
 
         "powershell_enable" : false,
-        
+
         "use_serial_as_asset_tag" : false,
         "default_status_id" : 1
     },
