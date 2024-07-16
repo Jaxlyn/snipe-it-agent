@@ -16,7 +16,8 @@
     "format" : {
        "_snipeit_amount_of_ram_19" : "str(round(int(output)/1073741824)) + \" GB\"",
        "name" : "str(output).upper()",
-       "_snipeit_ip_address_4" : "slice_ip_address(output)"
+       "_snipeit_ip_address_4" : "slice_ip_address(output)",
+       "_snipeit_last_logged_on_user_22" : "output[output.find(\"\\\\\") + 1:]"
     }
     
 }

@@ -8,7 +8,7 @@ from Machine.location import find_location, get_location_snipe_field_status, get
 def update_asset(Asset_data):
     update_asset_id_url = snipeurl + "/hardware/" + str(get_asset_id(Asset_data))
 
-    payload = get_machine_attributes_v2(commands_json)
+    payload = get_machine_attributes_v2()
 
     yes_or_no = get_date_snipe_field_status()
     if yes_or_no == True:

@@ -41,9 +41,9 @@ def get_asset_id(banana):
     Assetid = banana['rows'][0]["id"]
     return Assetid
 
-def get_machine_attributes_v2(data):
+def get_machine_attributes_v2():
     formatting = variables_json["format"]
-    for key, item in data.items():
+    for key, item in commands_json.items():
         output = os.popen(item).read().replace("\n","").replace("   ","").replace("  ","")
         for tablekey, code in formatting.items():
             if tablekey != key:
@@ -52,6 +52,6 @@ def get_machine_attributes_v2(data):
                 print(code)
                 output = eval(code)
                 break
-        data[key] = output
-        values = data
+        commands_json[key] = output
+        values = commands_json
     return values
