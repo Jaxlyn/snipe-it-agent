@@ -5,13 +5,13 @@ from Machine.hardware import get_serial_number, url_ok
 from Machine.newasset import create_new_asset
 from Machine.updateasset import update_asset
 
-print("\n Asset update in progress... \n")
-print(snipeurl)
+print("\nAsset update in progress... \n")
+#print(snipeurl)
 
 connection_established = url_ok(snipeurl + "/hardware")
 
 if connection_established == False:
-    print("No dice... Ending Update")
+    print("\nNo dice... Ending Update\n")
     time.sleep(5)
     sys.exit()
 
