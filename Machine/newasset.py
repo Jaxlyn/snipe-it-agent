@@ -2,8 +2,11 @@ import requests
 
 from Machine.initialize import commands_json, variables_json
 from getapicreds import snipeurl, apikey
-from Machine.hardware import get_machine_attributes_v2, get_time_and_date, get_date_snipe_field_status, get_date_snipe_field, get_serial_number
-from Machine.location import find_location, get_location_snipe_field_status, get_ipaddress
+from Machine.hardware import get_machine_attributes_v2, get_time_and_date, get_date_snipe_field, get_serial_number
+from Machine.location import find_location, get_ipaddress 
+from Machine.user import get_checkout_snipe_field_status, get_checkout_to_user_snipe_field_status
+from Machine.model import get_model_id
+from Machine.user import get_user_id, get_user
 
 def get_serial_as_asset_status():
     td = variables_json["variables"]["use_serial_as_asset_tag"]
@@ -15,12 +18,12 @@ def create_new_asset():
 
     payload = get_machine_attributes_v2()
 
-    yes_or_no = get_date_snipe_field_status()
+    yes_or_no = variables_json["variables"]["date_time_enabled"]
     if yes_or_no == True:
         the_field = get_date_snipe_field()
         payload[the_field] = get_time_and_date()
 
-    no_or_yes = get_location_snipe_field_status()
+    no_or_yes = variables_json["variables"]["ipaddress_location_enable"]
     if no_or_yes == True:
         strawberry = get_ipaddress(payload)
         payload[variables_json["variables"]["location_field"]] = find_location(strawberry)
@@ -29,7 +32,25 @@ def create_new_asset():
     if blueberry == True:
         payload["asset_tag"] = get_serial_number()
 
+    payload["serial"] = get_serial_number()
+
+    payload["model_id"] = get_model_id()
+
     payload["status_id"] = variables_json["variables"]["default_status_id"]
+
+    payload["rtd_location_id"] = variables_json["variables"]["default_location"]
+
+    yesyes = get_checkout_snipe_field_status()
+    yesnoyes = get_checkout_to_user_snipe_field_status()
+    if yesyes == True:
+        if yesnoyes == True:
+            payload["assigned_user"] = user_id =get_user_id(get_user())
+            if user_id == None:
+                chicken = get_ipaddress(payload)
+            payload["assigned_location"] = find_location(chicken)
+        else:    
+            chicken = get_ipaddress(payload)
+            payload["assigned_location"] = find_location(chicken)
 
     print(payload)
 

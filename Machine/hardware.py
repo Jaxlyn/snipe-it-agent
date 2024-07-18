@@ -27,10 +27,6 @@ def get_time_and_date():
     local_date = str(datetime.datetime.now())
     return local_date
 
-def get_date_snipe_field_status():
-    td = variables_json["variables"]["date_time_enabled"]
-    return td
-
 def get_date_snipe_field():
     field = variables_json["variables"]["date_field"]
     return field
@@ -50,7 +46,7 @@ def get_machine_attributes_v2():
             if tablekey != key:
                 continue
             else:
-                print(code)
+                #print(code)
                 output = eval(code)
                 break
         commands_json[key] = output

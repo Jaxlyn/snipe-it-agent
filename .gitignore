@@ -8,3 +8,5 @@ assetmgr_agent.spec
 apicreds.json
 assetmgr_agent_silent.py
 assetmgr_agent_silent.spec
+test_2.py
+dump.json

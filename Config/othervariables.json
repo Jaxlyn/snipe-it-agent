@@ -7,11 +7,17 @@
         "ipaddress_field" : "_snipeit_ip_address_4",
         "location_field" : "location_id",
         "unkown_location_value" : "Unknown Location",
+        "update_model_attributes" : true,
 
         "powershell_enable" : false,
 
         "use_serial_as_asset_tag" : false,
-        "default_status_id" : 1
+        "update_status_id" : true,
+        "default_status_id" : 2,
+        "default_location" : 239,
+        "default_custom_fieldset_id": 10,
+        "checkout_on_creation" : true,
+        "checkout_to_user_on_creation" : true
     },
     "format" : {
        "_snipeit_amount_of_ram_19" : "str(round(int(output)/1073741824)) + \" GB\"",

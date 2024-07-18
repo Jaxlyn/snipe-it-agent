@@ -6,7 +6,11 @@
     "_snipeit_connection_method_25" : "wmic nic where netenabled=true get netconnectionID | find /v \"NetConnectionID\"", 
     "_snipeit_ip_address_4" : "wmic NICCONFIG WHERE IPEnabled=true GET IPAddress | find /v \"IPAddress\"",
     "_snipeit_mac_address_1" : "wmic NICCONFIG WHERE IPEnabled=true GET Macaddress | find /v \"MACAddress\"",
-    "model_name" : "wmic csproduct get name | find /v \"Name\"",
     "_snipeit_operating_system_23" : "wmic os get caption | find /v \"Caption\"",
-    "_snipeit_os_version_24" : "wmic os get version | find /v \"Version\""
+    "_snipeit_os_version_24" : "wmic os get version | find /v \"Version\"",
+    "model_name" : "wmic csproduct get name | find /v \"Name\"",
+    "product_number" : "wmic computersystem get SystemSKUNumber | find /v \"SystemSKUNumber\"",
+    "video_adapter" : "wmic path Win32_VideoController get description | find /v \"Description\"",
+    "screen_resolution" : "wmic path Win32_VideoController get VideoModeDescription | find /v \"VideoModeDescription\"",
+    "connected_monitors" : "wmic path Win32_PnPEntity WHERE PNPClass=\"Monitor\" get caption | find /v \"Caption\""
 }

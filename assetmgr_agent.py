@@ -31,13 +31,11 @@ Asset_data = json.loads(response.text)
 #print(Asset_data)
 
 if "rows" in Asset_data:
-    print("asset exists")
+    print("Asset exists...")
     update_asset(Asset_data)
 else:
-    print("Asset to be created")
-    #temporary sys.exit
-    time.sleep(5)
-    sys.exit()
+    print("Asset does not exist...\nCreating Asset...")
     create_new_asset()
 
+print("\nUpdate Completed...")
 time.sleep(5)

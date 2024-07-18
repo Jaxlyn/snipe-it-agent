@@ -10,10 +10,6 @@ def find_location(ipadr):
             break
         notfound = get_unknown_location_snipe_field()
     return notfound
-        
-def get_location_snipe_field_status():
-    td = variables_json["variables"]["ipaddress_location_enable"]
-    return td
 
 def get_unknown_location_snipe_field():
     field2 = variables_json["variables"]["unkown_location_value"]
