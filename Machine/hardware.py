@@ -41,7 +41,7 @@ def get_asset_id(banana):
 def get_machine_attributes_v2():
     formatting = variables_json["format"]
     for key, item in commands_json.items():
-        output = os.popen(item).read().replace("\n","").replace("   ","").replace("  ","")
+        output = os.popen(item).read().replace("\n","").replace("   ","")
         for tablekey, code in formatting.items():
             if tablekey != key:
                 continue

@@ -52,7 +52,7 @@ def create_new_asset():
             chicken = get_ipaddress(payload)
             payload["assigned_location"] = find_location(chicken)
 
-    print(payload)
+    #print(payload)
 
     headers = {
         "accept": "application/json",
@@ -62,4 +62,4 @@ def create_new_asset():
 
     response = requests.post(new_asset_id_url, json=payload, headers=headers)
 
-    print(response.text)
+    #print(response.text)

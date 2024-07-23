@@ -6,8 +6,11 @@
         "ipaddress_location_enable" : false,
         "ipaddress_field" : "_snipeit_ip_address_4",
         "location_field" : "location_id",
-        "unkown_location_value" : "Unknown Location",
+        "unkown_location_value" : 455,
         "update_model_attributes" : true,
+
+        "pull_monitor_data" : true,
+        "monitor_field" : "_snipeit_connected_monitors_27",
 
         "powershell_enable" : false,
 
@@ -17,14 +20,21 @@
         "default_location" : 239,
         "default_custom_fieldset_id": 10,
         "checkout_on_creation" : true,
-        "checkout_to_user_on_creation" : true
+        "checkout_to_user_on_creation" : true,
+        "end_of_life" : 60,
+        "unknown_manufacturer_id" : 49 
     },
     "format" : {
        "_snipeit_amount_of_ram_19" : "str(round(int(output)/1073741824)) + \" GB\"",
        "name" : "str(output).upper()",
        "_snipeit_ip_address_4" : "output[2:output[2:18].find('\"')+2]",
        "_snipeit_last_logged_on_user_22" : "output[output.find(\"\\\\\") + 1:]",
-       "_snipeit_mac_address_1" : "output[:17]"
+       "_snipeit_mac_address_1" : "output[:17]",
+       "_snipeit_video_adapter_25" : "output.replace(\"  \",\",\")",
+       "_snipeit_connected_monitors_27" : "output.replace(\"  \",\",\")",
+       "_snipeit_cpu_name_18" : "output.replace(\"  \",\"\")",
+       "_snipeit_operating_system_23" : "output.replace(\"  \",\"\")",
+       "_snipeit_os_version_24" : "output.replace(\"  \",\"\")"
     }
     
 }

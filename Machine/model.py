@@ -40,7 +40,7 @@ def get_model_id():
             model_id = Model_data["rows"][x]["id"]
             return model_id
 
-    print("model not found")
+    print("Model not found...\nCreating Model...")
     model_data_id = create_model(search_key)
 
     model_id = model_data_id["payload"]["id"]
@@ -57,8 +57,16 @@ def get_manufacturer_id():
     }
 
     response = requests.get(url, headers=headers)
+
     Model_manufacture = json.loads(response.text)
-    return Model_manufacture["rows"][0]["id"]
+
+    if Model_manufacture["total"] == 0:
+        print("Unknown Manufacturer...")
+        return variables_json["unknown_manufacture_id"]
+    for x in range(0, Model_manufacture["total"], 1):
+        if manufacture == Model_manufacture["rows"][x]["name"]:
+            model_id = Model_manufacture["rows"][x]["id"]
+            return model_id
 
 
 #used for creating new model
@@ -81,7 +89,8 @@ def create_model(local_model_name):
     "category_id": int(get_model_category()),
     "manufacturer_id" : get_manufacturer_id(),
     "model_number" : get_product_number(),
-    "fieldset_id": variables_json["variables"]["default_custom_fieldset_id"]
+    "fieldset_id": variables_json["variables"]["default_custom_fieldset_id"],
+    "eol" : variables_json["variables"]["end_of_life"]
     }
 
     headers = {
@@ -92,5 +101,5 @@ def create_model(local_model_name):
 
     response = requests.post(url, json=payload, headers=headers)
     model_data = json.loads(response.text)
-    print(model_data)
+    #print(model_data)
     return model_data
