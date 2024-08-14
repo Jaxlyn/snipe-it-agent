@@ -22,7 +22,9 @@
         "checkout_on_creation" : true,
         "checkout_to_user_on_creation" : true,
         "end_of_life" : 60,
-        "unknown_manufacturer_id" : 49 
+        "unknown_manufacturer_id" : 49 ,
+
+        "enable_manual_input" : true
     },
     "format" : {
        "_snipeit_amount_of_ram_19" : "str(round(int(output)/1073741824)) + \" GB\"",
@@ -35,6 +37,9 @@
        "_snipeit_cpu_name_18" : "output.replace(\"  \",\"\")",
        "_snipeit_operating_system_23" : "output.replace(\"  \",\"\")",
        "_snipeit_os_version_24" : "output.replace(\"  \",\"\")"
+    },
+    "manual_input" : {
+        "Maddenco ID" : "_snipeit_maddenco_id_5"
     }
     
 }

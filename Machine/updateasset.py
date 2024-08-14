@@ -29,6 +29,14 @@ def update_asset(Asset_data):
     if yesnoyesno == True:
         payload["status_id"] = variables_json["variables"]["default_status_id"]
 
+    yesnoyesnoyes = variables_json["variables"]["enable_manual_input"]
+    if yesnoyesnoyes == True:
+        for x,y in variables_json["manual_input"].items():
+            print(x)
+            payload[y] = input()
+    #print(payload)
+
+
 
     #print(payload)
 
