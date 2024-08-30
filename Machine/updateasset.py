@@ -3,7 +3,7 @@ import requests, time
 from Machine.initialize import variables_json
 from getapicreds import snipeurl, apikey
 from Machine.hardware import get_machine_attributes_v2, get_asset_id, get_time_and_date, get_date_snipe_field
-from Machine.location import find_location, get_ipaddress
+from Machine.location import netboxlocation, get_ipaddress
 from Machine.model import get_model_id
 
 def update_asset(Asset_data):
@@ -19,7 +19,7 @@ def update_asset(Asset_data):
     no_or_yes = variables_json["variables"]["ipaddress_location_enable"]
     if no_or_yes == True:
         strawberry = get_ipaddress(payload)
-        payload[variables_json["variables"]["location_field"]] = find_location(strawberry)
+        payload[variables_json["variables"]["location_field"]] = netboxlocation(strawberry)
 
     noyesno = variables_json["variables"]["update_model_attributes"]
     if noyesno == True:

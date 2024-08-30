@@ -13,3 +13,4 @@ test_2.spec
 dump.json
 commands.json
 monitor.py
+locationupdate.py

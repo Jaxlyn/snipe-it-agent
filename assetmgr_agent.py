@@ -30,7 +30,7 @@ Asset_data = json.loads(response.text)
 
 #print(Asset_data)
 
-if "rows" in Asset_data:
+if Asset_data["total"] > 0:
     print("Asset exists...")
     update_asset(Asset_data)
 else:

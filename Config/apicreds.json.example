@@ -1,5 +1,9 @@
 {
     "SNIPE_URL" : "https://develop.snipeitapp.com/api/v1",
     
-    "API_KEY" : " API token goes here "
+    "API_KEY" : " API token goes here ",
+
+    "NET_BOX_URL" : "optional, https://netbox.com",
+
+    "NET_BOX_API_KEY" : "optional"
 }

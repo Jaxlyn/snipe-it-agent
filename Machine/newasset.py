@@ -3,7 +3,7 @@ import requests
 from Machine.initialize import commands_json, variables_json
 from getapicreds import snipeurl, apikey
 from Machine.hardware import get_machine_attributes_v2, get_time_and_date, get_date_snipe_field, get_serial_number
-from Machine.location import find_location, get_ipaddress 
+from Machine.location import netboxlocation, get_ipaddress 
 from Machine.user import get_checkout_snipe_field_status, get_checkout_to_user_snipe_field_status
 from Machine.model import get_model_id
 from Machine.user import get_user_id, get_user
@@ -26,7 +26,7 @@ def create_new_asset():
     no_or_yes = variables_json["variables"]["ipaddress_location_enable"]
     if no_or_yes == True:
         strawberry = get_ipaddress(payload)
-        payload[variables_json["variables"]["location_field"]] = find_location(strawberry)
+        payload[variables_json["variables"]["location_field"]] = netboxlocation(strawberry)
     
     blueberry = get_serial_as_asset_status()
     if blueberry == True:
@@ -47,10 +47,10 @@ def create_new_asset():
             payload["assigned_user"] = user_id =get_user_id(get_user())
             if user_id == None:
                 chicken = get_ipaddress(payload)
-            payload["assigned_location"] = find_location(chicken)
+            payload["assigned_location"] = netboxlocation(chicken)
         else:    
             chicken = get_ipaddress(payload)
-            payload["assigned_location"] = find_location(chicken)
+            payload["assigned_location"] = netboxlocation(chicken)
 
     #print(payload)
 
