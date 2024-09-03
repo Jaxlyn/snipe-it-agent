@@ -60,6 +60,6 @@ def create_new_asset():
         "content-type": "application/json"
     }
 
-    response = requests.post(new_asset_id_url, json=payload, headers=headers)
+    response = requests.post(new_asset_id_url, json=payload, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
 
     #print(response.text)

@@ -17,7 +17,7 @@ def netboxlocation(ipaddress):
             "Authorization": "Token " + netboxkey
         }
 
-        response2 = requests.get(url3, headers=headers2, verify=False)
+        response2 = requests.get(url3, headers=headers2, verify=variables_json["variables"]["verify_ssl_netbox_url"])
 
         something2 = json.loads(response2.text)
 
@@ -31,7 +31,7 @@ def netboxlocation(ipaddress):
                 "Authorization": "Bearer " + apikey
             }
 
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
 
             #print(response.text)
             something = json.loads(response.text)

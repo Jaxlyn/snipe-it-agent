@@ -22,7 +22,7 @@ def get_user_id(user):
         "Authorization": "Bearer " + apikey
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
     User_data = json.loads(response.text)
 
     print(User_data["total"])

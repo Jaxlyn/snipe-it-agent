@@ -7,9 +7,9 @@ from Machine.initialize import variables_json, commands_json
 #    output = carrot[:carrot.find('"')]
 #    return output
 
-def url_ok(url):
+def url_ok(url, verify_url):
     try:
-        response = requests.get(url)
+        response = requests.get(url, verify=verify_url)
     except Exception as e:
         print(f"NOT OK: {str(e)}")
         true_or_false = False

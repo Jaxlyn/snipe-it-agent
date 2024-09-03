@@ -24,7 +24,10 @@
         "end_of_life" : 60,
         "unknown_manufacturer_id" : 49 ,
 
-        "enable_manual_input" : false
+        "enable_manual_input" : false,
+
+        "verify_ssl_snipe_url" : true,
+        "verify_ssl_netbox_url" : false
     },
     "manual_input" : {
         "Maddenco ID" : "_snipeit_maddenco_id_5"

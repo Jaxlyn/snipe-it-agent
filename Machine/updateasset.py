@@ -1,4 +1,4 @@
-import requests, time
+import requests
 
 from Machine.initialize import variables_json
 from getapicreds import snipeurl, apikey
@@ -46,6 +46,6 @@ def update_asset(Asset_data):
         "content-type": "application/json"
     }
 
-    response = requests.patch(update_asset_id_url, json=payload, headers=headers)
+    response = requests.patch(update_asset_id_url, json=payload, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
 
     #print(response.text)

@@ -31,7 +31,7 @@ def get_model_id():
         "Authorization": "Bearer " + apikey
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
 
     Model_data = json.loads(response.text)
 
@@ -56,7 +56,7 @@ def get_manufacturer_id():
         "Authorization": "Bearer " + apikey
     }
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
 
     Model_manufacture = json.loads(response.text)
 
@@ -99,7 +99,7 @@ def create_model(local_model_name):
         "content-type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers, verify=variables_json["variables"]["verify_ssl_snipe_url"])
     model_data = json.loads(response.text)
     #print(model_data)
     return model_data
