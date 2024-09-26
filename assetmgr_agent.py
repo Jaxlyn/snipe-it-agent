@@ -11,13 +11,19 @@ print("\nAsset update in progress... \n")
 
 connection_established = url_ok(snipeurl + "/hardware", variables_json["variables"]["verify_ssl_snipe_url"])
 #print(connection_established)
-connection_established = url_ok(netboxurl, variables_json["variables"]["verify_ssl_netbox_url"])
-#print(connection_established)
 
 if connection_established == False:
     print("\nNo dice... Ending Update\n")
     time.sleep(5)
     sys.exit()
+
+if variables_json["variables"]["enable_net_box"] == True:
+    connection_established = url_ok(netboxurl, variables_json["variables"]["verify_ssl_netbox_url"])
+    #print(connection_established)
+    if connection_established == False:
+        print("\nNo dice... Ending Update\n")
+        time.sleep(5)
+        sys.exit()
 
 serial = get_serial_number()
 

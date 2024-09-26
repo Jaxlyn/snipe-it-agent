@@ -7,7 +7,7 @@
         "ipaddress_field" : "_snipeit_ip_address_4",
         "location_field" : "location_id",
         "location_search_field" : "address2",
-        "enable_net_box" : true,
+        "enable_net_box" : false,
         "unkown_location_value" : 455,
         "update_model_attributes" : true,
 
